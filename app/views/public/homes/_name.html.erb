@@ -1,0 +1,11 @@
+<% @homes.each do |homes| %>
+<!-- @homes → homes -->
+<div>
+  <%= link_to post_image_path(post_image.id) do %>
+    <%= image_tag post_image.get_image %>
+  <% end %>
+  <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
+  <p>ニックネーム：<%= homes.name %></p>
+  <p>年齢：<%= homes.age %></p>
+</div>
+<% end %>

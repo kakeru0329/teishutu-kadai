@@ -1,0 +1,32 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col">
+      <div class="col-5 offset-5">
+        <p>
+          ようこそ、NEW GAME!
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- 新着レビュー表示 -->
+  <br>
+  <h4 class="recommendation"><i class="fas fa-crown"></i> 新着レビュー <i class="fas fa-crown"></i></h4><br>
+  <div class="row">
+      <% @posts.each do |post| %>
+        <div class="box" style="float:left; margin-right:20px;">
+          <%= link_to post_path(post.id) do %> <!-- タイトルをクリックしたらレビュー詳細画面へ遷移 -->
+          <% end %>
+        </div>
+      <% end %>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="col-5 offset-5">
+      <p><%= link_to "レビューを見に行く", posts_path %></p>
+    </div>
+  </div>
+</div>
