@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-
   # 顧客用
-# URL /customers/sign_in ...
-devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
+  # URL /customers/sign_in ...
+  devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
+
+
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'customers/sessions#new_guest'
+  end
 
   scope module: :public do
     root to: 'homes#top'

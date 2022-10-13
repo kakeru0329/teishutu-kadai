@@ -17,9 +17,6 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <% if customer_signed_in? %>
-              <li class="nav-post active">
-                <span>ようこそ</span><%#ログイン顧客名表示%>
-              </li>
               <li class="nav-post">
                 <%= link_to "マイページ", customer_show_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
               </li>
@@ -32,19 +29,6 @@
               <li class="nav-post">
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1' %>
               </li>
-            <%#<% elsif admin_signed_in? %>
-              <%#<li class="nav-post">
-                <%#<%= link_to "レビュー一覧",  admin_posts_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
-              <%#</li>
-              <li class="nav-post">
-                <%= link_to "会員一覧", admin_customers_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
-              <%#</li>
-              <li class="nav-post">
-                <%= link_to "ジャンル一覧", admin_genres_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
-              <%#</li>
-              <li class="nav-post">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1' %>
-              </li>
             <% else %>
               <li class="nav-post">
                 <%= link_to "レビュー一覧", posts_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
@@ -54,6 +38,9 @@
               </li>
               <li class="nav-post">
                 <%= link_to "ログイン", new_customer_session_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+              </li>
+              <li class="nav-post">
+                <%= link_to "ゲストログイン", customers_guest_sign_in_path,class: 'btn btn-outline-secondary mx-3 my-1', method: :post %>
               </li>
             <% end %>
           </ul>
@@ -65,11 +52,6 @@
     </main>
     <footer>
       <p class="text-center">©2022 </p>
-      <div class="d-flex justify-content-center">
-        <a href="#" class="mx-1 text-dark"><i class="fab fa-twitter fa-2x"></i></a>
-        <a href="#" class="mx-5 text-dark"><i class="fab fa-instagram fa-2x"></i></a>
-        <a href="#" class="mx-1 text-dark"><i class="far fa-envelope fa-2x"></i></a>
-      </div>
       </footer>
   </body>
 </html>
