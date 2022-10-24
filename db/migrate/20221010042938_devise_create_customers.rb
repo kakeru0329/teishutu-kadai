@@ -34,7 +34,6 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
 
       t.string :name, null: false
       t.integer :age, null: false
-      t.string :password, null: false
       t.boolean :is_deleted, null: false, default: false
 
 

@@ -1,0 +1,11 @@
+<% if @games.present? %>
+  <% @games.each do |game| %>
+    <div class="list">
+    <% if game.image_url %>
+      <%= link_to (image_tag(game.image_url, style: "width: 70px;height: 100px;display: inline-block;")), good.url %>
+      <% end %>
+
+      <%= game.title %>
+    </div>
+  <% end %>
+<% end %>

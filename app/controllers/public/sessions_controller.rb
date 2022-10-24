@@ -3,11 +3,20 @@
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
-  def guest_sign_in
-    customer = Customer.guest
+  def new_guest
+    customer = Customer.find_or_create_by(email: 'guest@example.com') do |customer|
+    customer.password = SecureRandom.urlsafe_base64
+    end
+
     sign_in customer
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
+
+  #def guest_sign_in
+  #  customer = Customer.guest
+  #  sign_in customer
+  #  redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  #end
 
 
   # GET /resource/sign_in

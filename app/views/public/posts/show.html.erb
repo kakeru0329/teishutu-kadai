@@ -1,2 +1,18 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<% @posts.each do |post|%>
+<div class="relative-post-evaluation">
+  <span>評価：</span>
+  <span id="star-rate-<%= post.id %>"></span>
+  <script>
+    $('#star-rate-<%= post.id %>').raty({
+      size: 36,
+      starOff: "<%= asset_path('star-off.png') %>",
+      starOn: "<%= asset_path('star-on.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      half: true,   # 星半分表示
+      readOnly: true,   # 読み取り専用
+      score: <%= post.evaluation %>,   # 星評価の表示
+    });
+  </script>
+  <%= post.evaluation %>
+</div>
+<% end %>

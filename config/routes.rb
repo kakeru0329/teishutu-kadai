@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers,skip: [:passwords], controllers: {
@@ -8,12 +9,15 @@ Rails.application.routes.draw do
 
 
   devise_scope :customer do
-    post 'customers/guest_sign_in', to: 'customers/sessions#new_guest'
+   post 'customers/guest_sign_in', to: 'public/sessions#new_guest'
   end
+
+
 
   scope module: :public do
     root to: 'homes#top'
     resources :posts, only: [:index, :show, :new, :create, :destroy]
+    get 'posts/search'
     resources :genres, only: [:index, :edit, :create, :update]
     get '/customers/unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
     patch '/customers/withdraw' => 'customerswithdraw', as: 'customer_withdraw'
