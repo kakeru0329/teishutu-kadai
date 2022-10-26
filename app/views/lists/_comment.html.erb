@@ -1,0 +1,16 @@
+<table>
+  <tbody>
+    <% post.comments.each do |comment| %>
+    <tr>
+      <td><%= image_tag comment.customer.get_profile_image,size: "20x20" %></td>
+      <td><%= comment.customer.name %></td>
+      <td><%= comment.comment %></td>
+      <td>
+        <% if comment.customer == current_customer %>
+        <%= link_to "削除", comment_path, method: :delete, class: "btn btn-sm btn-danger p-0 p-1", style: "font-size: 8px;" %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -15,35 +15,40 @@
       <nav class="navbar navbar-expand-lg navbar-light">
         <%= link_to "NEW GAME", root_path, class:"header-title navbar-brand" %>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-          <ui class="navbar-nav">
+          <div>
             <% if customer_signed_in? %>
-              <li class="nav-post">
-                <%= link_to "マイページ", root_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
-              </li>
-              <li class="nav-post">
-                <%= link_to "レビュー一覧", posts_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
-              </li>
-              <li class="nav-post">
-                <%= link_to "新規レビュー", new_post_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
-              </li>
-              <li class="nav-post">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1' %>
-              </li>
-            <% else %>
-              <li class="nav-post">
-                <%= link_to "レビュー一覧", posts_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
-              </li>
-              <li class="nav-post">
-                <%= link_to "新規登録", new_customer_registration_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
-              </li>
-              <li class="nav-post">
-                <%= link_to "ログイン", new_customer_session_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
-              </li>
-              <li class="nav-post">
-                <%= link_to "ゲストログイン", customers_guest_sign_in_path,class: 'btn btn-outline-secondary mx-3 my-1', method: :post %>
-              </li>
+              <p>ようこそ <%= current_customer.name %></p>
             <% end %>
-          </ul>
+            <ui class="navbar-nav">
+              <% if customer_signed_in? %>
+                <li class="nav-post">
+                  <%= link_to "マイページ", root_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+                </li>
+                <li class="nav-post">
+                  <%= link_to "レビュー一覧", posts_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+                </li>
+                <li class="nav-post">
+                  <%= link_to "新規レビュー", new_post_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+                </li>
+                <li class="nav-post">
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1' %>
+                </li>
+              <% else %>
+                <li class="nav-post">
+                  <%= link_to "レビュー一覧", posts_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+                </li>
+                <li class="nav-post">
+                  <%= link_to "新規登録", new_customer_registration_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+                </li>
+                <li class="nav-post">
+                  <%= link_to "ログイン", new_customer_session_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+                </li>
+                <li class="nav-post">
+                  <%= link_to "ゲストログイン", customers_guest_sign_in_path,class: 'btn btn-outline-secondary mx-3 my-1', method: :post %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
