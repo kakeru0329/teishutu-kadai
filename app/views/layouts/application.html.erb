@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
           <div>
             <% if customer_signed_in? %>
-              <p>ようこそ <%= current_customer.name %></p>
+              <p>ようこそ <%= current_customer.name %> さん</p>
             <% end %>
             <ui class="navbar-nav">
               <% if customer_signed_in? %>

@@ -12,13 +12,14 @@
   <div class="row">
     <% @posts.each do |post| %>
       <div class="box" style="float:left; margin-right:20px;">
-        <%= link_to post_path(post.id) %> <!-- タイトルをクリックしたらレビュー詳細画面へ遷移 -->
+        <%= link_to post.review_title,post_path(post.id) %><!-- タイトルをクリックしたらレビュー詳細画面へ遷移 -->
+
       </div>
     <% end %>
   </div>
   <div class="row">
 
-    <%#<%= render 'public/customers/name', customer: @customer %>
+    <%= render 'lists/name', customer: @customer %>
 
   </div>
 

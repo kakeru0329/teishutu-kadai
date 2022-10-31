@@ -1,11 +1,12 @@
 class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
+
   end
 
   def show
     @post = Post.find(params[:id])
-    #@review = Review.new
+    @comment = Comment.new
   end
 
   def new
@@ -13,10 +14,15 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new
-    @post.save
+    @post = Post.new(posts_params)
+    @post.customer_id = current_customer.id
+
     flash[:notice] = "投稿できました"
-    redirect_to posts_path
+    if @post.save
+      redirect_to posts_path
+    else
+      render :new
+    end
   end
 
   def search
@@ -28,10 +34,14 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
+
   private
 
   def posts_params
-    params.require(:post).permit(:background, :evaluation)
+    params.require(:post).permit(:background, :evaluation, :review_title, :customer_id)
   end
 
 end

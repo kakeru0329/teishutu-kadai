@@ -1,23 +1,36 @@
-<% @posts.each do |post|%>
-<div class="relative-post-evaluation">
-  <span>評価：</span>
-  <span id="star-rate-<%= post.id %>"></span>
-  <script>
-    $('#star-rate-<%= post.id %>').raty({
-      size: 36,
-      starOff: "<%= asset_path('star-off.png') %>",
-      starOn: "<%= asset_path('star-on.png') %>",
-      starHalf: "<%= asset_path('star-half.png') %>",
-      half: true,   # 星半分表示
-      readOnly: true,   # 読み取り専用
-      score: <%= post.evaluation %>,   # 星評価の表示
-    });
-  </script>
-  <%= post.evaluation %>
-</div>
-<% end %>
 
-<%= form_with model: @post do |f| %>
-  <%= f.text_area :background, class: "form-control" %>
-  <%= f.submit '投稿', class: "btn btn-success" %>
+  <div>
+    <p><%= @post.review_title %></p>
+    <p><%= @post.background %></p>
+  </div>
+
+<div>
+  <p>コメント件数：<%= @post.comments.count %></p>
+  <% @post.comments.each do |comment| %>
+    <%= comment.customer.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <% if post_comment.customer == current_customer %>
+      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@post, @comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "コメントする" %>
+  <% end %>
+</div>
+
+<% if @post.favorited_by?(current_customer) %>
+  <p>
+    <%= link_to post_image_favorites_path(@post), method: :delete do %>
+      ♥<%= @post.favorites.count %> いいね
+    <% end %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to post_image_favorites_path(@post), method: :post do %>
+      ♡<%= @post.favorites.count %> いいね
+    <% end %>
+  </p>
 <% end %>

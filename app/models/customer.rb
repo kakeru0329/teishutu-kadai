@@ -6,10 +6,10 @@ class Customer < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :email, presence: true
   validates :name, presence: true
-  validates :email, presence: true
 
   def get_image(width, height)
     unless image.attached?

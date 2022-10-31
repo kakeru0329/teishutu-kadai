@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_25_120627) do
+ActiveRecord::Schema.define(version: 2022_10_27_130829) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "customer_id"
@@ -35,12 +35,24 @@ ActiveRecord::Schema.define(version: 2022_10_25_120627) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_favorites_on_customer_id"
+    t.index ["post_id"], name: "index_favorites_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "background"
     t.float "evaluation"
     t.string "review_title"
+    t.integer "customer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "favorites", "customers"
+  add_foreign_key "favorites", "posts"
 end

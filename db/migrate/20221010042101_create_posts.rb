@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.text :background
       t.float :evaluation
       t.string :review_title
+      t.integer :customer_id
       t.timestamps
     end
   end
