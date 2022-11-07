@@ -6,6 +6,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.float :evaluation
       t.string :review_title
       t.integer :customer_id
+      t.integer :tag_id
       t.timestamps
     end
   end

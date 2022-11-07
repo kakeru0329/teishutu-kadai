@@ -1,12 +1,14 @@
-
-<% customer.each do |customer| %>
-<div>
-  <%= link_to post_image_path(post_image.id) do %>
-    <%= image_tag customer.get_image %>
-  <% end %>
-  <p>投稿ユーザー画像：<%= image_tag .customer.get_profile_image(100,100) %></p>
-  <p>ニックネーム：<%= customer.name %></p>
-  <p>年齢：<%= customer.age %></p>
-  <p>メールアドレス：<%= customer.email %></p>
-</div>
-<% end %>
+<table class="table table-bordered">
+  <tr>
+    <td>ニックネーム：<%= customer.name %></td>
+  </tr>
+  <tr>
+    <td>年齢：<%= customer.age %></td>
+  </tr>
+  <tr>
+    <td>メールアドレス：<%= customer.email %></td>
+  </tr>
+  <tr>
+    <th><%= link_to "編集する",edit_customer_path(customer.id), class:"btn btn-success ml-5"%></th>
+  </tr>
+</table>

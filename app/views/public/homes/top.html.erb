@@ -10,24 +10,40 @@
   <br>
   <h4 class="recommendation"><i class="fas fa-crown"></i> 新着レビュー <i class="fas fa-crown"></i></h4><br>
   <div class="row">
-    <% @posts.each do |post| %>
-      <div class="box" style="float:left; margin-right:20px;">
-        <%= link_to post.review_title,post_path(post.id) %><!-- タイトルをクリックしたらレビュー詳細画面へ遷移 -->
+    <div class="col-md-8">
+      <% @posts.each do |post| %>
+            <div class="card mb-6">
+              <div class="card-header">
+                <p class="card-header-title">
+                  <%= post.review_title %>
+                  <%= post.show_tag_name %>
+                </p>
+              </div>
+              <%# 星評価機能 %>
+              <div class="card-content">
+                <div class="content">
+                  <div class="content average-score">
+                    <div class="star-rating mb-2">
+                      <div class="star-rating-back">★★★★★</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <%= link_to post_path(post.id), class: "button card-footer-item" do %>
+                  レビューを見る
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+    </div>
+    <div class="col-md-4">
+      <% if @customer != nil then%>
+          <%= render 'lists/name', customer: @customer %>
+        <% end %>
 
-      </div>
-    <% end %>
-  </div>
-  <div class="row">
+        <%= render 'lists/search', games: @games %>
 
-    <%= render 'lists/name', customer: @customer %>
-
-  </div>
-
-
-  <div class="row">
-    <div class="col">
-      <div class="col-5 offset-5">
-      <p><%= link_to "レビューを見に行く", posts_path %></p>
     </div>
   </div>
 </div>

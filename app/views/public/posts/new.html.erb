@@ -1,11 +1,40 @@
-
-<h2 class="mt-3">新規投稿</h2>
-<%= form_with model: @post do |f| %>
-  <h6>タイトル</h6>
-    <%= f.text_field :review_title %>
-
-  <h6>レビュー</h6>
-    <%= f.text_area :background %>
-
-  <%= f.submit '投稿', class: "btn btn-success" %>
-<% end %>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-12 mt-5">
+      <h2 class="my-5">新規投稿</h2>
+    </div>
+  </div>
+  <div class="row my-5 d-flex justify-content-center">
+    <div class="col-xs-12">
+      <%= form_with model: @post do |f| %>
+      <table>
+        <tr>
+          <th><%= f.label "タイトル" %></th>
+          <td><%= f.text_field :review_title %></td>
+        </tr>
+        <tr>
+          <th><%= f.label "レビュー" %></th>
+          <td><%= f.text_area :background %></td>
+        </tr>
+        
+        <tr>
+          <th><%= f.label "タグ" %></th>
+          <td><%= f.collection_select :tag_id, Tag.all, :id, :tag_name %></td>
+        </tr>
+        <tr>
+          <th><%= f.submit '投稿', class: "btn btn-success" %></th>
+        </tr>
+      </table>
+      <% end %>
+      <%# 星評価機能　%>
+      <script>
+        $('#evaluate_stars').raty({
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'post[evaluation]' //登録するモデル名とカラム名を記述
+        });
+      </script>
+    </div>
+  </div>
+</div>

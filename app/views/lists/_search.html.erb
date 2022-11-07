@@ -1,0 +1,25 @@
+  <div class="row">
+    <div class="search-box">
+      <%= form_with url: posts_search_path, method: :get, local: true do |f| %>
+        <div class="form-group">
+          <%= f.text_field :keyword, class: "form-control" %>
+          <%= f.submit 'ゲームタイトルを検索', class: "form-control btn btn-success" %>
+        </div>
+      <% end %>
+      <% if games.present? %>
+      <%= render 'lists/game' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class="col">
+      <%= form_tag('/', method: :get) do %>
+        <%= text_field_tag :game, "",  id: "game", name: "keyword", placeholder: "キーワード", style: "width: 200px;"%><button title="検索" type="submit">検索</button>
+      <% end %>
+    </div>
+    <h6>検索結果</h6>
+    <div class="col">
+       <%= render partial: 'lists/game' %>
+    </div>
+  </div>

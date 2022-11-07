@@ -14,12 +14,14 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light">
         <%= link_to "NEW GAME", root_path, class:"header-title navbar-brand" %>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-          <div>
-            <% if customer_signed_in? %>
-              <p>ようこそ <%= current_customer.name %> さん</p>
-            <% end %>
-            <ui class="navbar-nav">
+          <button class="navbar-toggler mx-5" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <% if customer_signed_in? %>
+                <p>ようこそ <%= current_customer.name %> さん</p>
+              <% end %>
               <% if customer_signed_in? %>
                 <li class="nav-post">
                   <%= link_to "マイページ", root_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
@@ -57,7 +59,6 @@
     </main>
     <footer>
       <p class="text-center">©2022 </p>
-
-      </footer>
+    </footer>
   </body>
 </html>

@@ -2,7 +2,7 @@
   <tbody>
     <% post.comments.each do |comment| %>
     <tr>
-      <td><%= image_tag comment.customer.get_profile_image,size: "20x20" %></td>
+      <td><%#= image_tag comment.customer.get_profile_image,size: "20x20" %></td>
       <td><%= comment.customer.name %></td>
       <td><%= comment.comment %></td>
       <td>

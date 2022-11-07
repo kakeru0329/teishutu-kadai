@@ -7,6 +7,7 @@ class Public::SessionsController < Devise::SessionsController
     customer = Customer.find_or_create_by(email: 'guest@example.com') do |customer|
     customer.password = SecureRandom.urlsafe_base64
     customer.name = "ゲストユーザー"
+    customer.age = "0"
     end
 
     sign_in customer
