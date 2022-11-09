@@ -4,7 +4,7 @@
       <div class="col">
         <div class="col-5 offset-5">
           <% @tags.each do |tag| %>
-            <span class="nav-post">
+            <span class="nav-post"><%#タグ検索%>
               <% if @tag.present? && @tag == tag %>
                 <%= link_to "#{tag.tag_name}", posts_path(tag_id: tag.id),class: 'btn btn-secondary mx-3 my-1' %>
               <% else %>
@@ -15,8 +15,8 @@
           <table>
             <% @posts.each do |post| %>
               <tr>
-                <td><%= post.review_title %></td>
-                <td><%= post.show_tag_name %></td>
+                <td><%=link_to post.review_title, post_path(post.id) %></td>
+                <td class="text-right"><%= post.show_tag_name %></td>
                 <%# 星評価機能 %>
                 <td class="post-evaluation" data-score="<%= post.evaluation %>"></td>
               </tr>

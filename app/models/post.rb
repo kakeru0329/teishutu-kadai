@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   validates :background, presence: true
 
   def favorited_by?(customer)
-   favorites.exists?(customer_id: customer.id)
+   favorites.where(customer_id: customer).exists?
   end
 
   def show_tag_name

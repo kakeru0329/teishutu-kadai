@@ -1,17 +1,26 @@
 class Public::FavoritesController < ApplicationController
 
+  before_action :authenticate_customer!
+
   def create
-    @post_favorite = Favorite.new(customer_id: current_customer.id, post_id: params[:post_id])
-    @post_favorite.save
-    redirect_to post_path(params[:post_id])
+    @post = Post.find(params[:post_id])
+    favorite = @post.favorites.new(customer_id: current_customer.id)
+    if favorite.save
+      redirect_to request.referer
+    else
+      redirect_to request.referer
+    end
   end
 
   def destroy
-    @post_favorite = Favorite.find_by(customer_id: current_customer.id, post_id: params[:post_id])
-    @post_favorite.destroy
-    redirect_to post_path(params[:post_id])
+    @post = Post.find(params[:post_id])
+    favorite = @post.favorites.find_by(customer_id: current_customer.id)
+    if favorite.present?
+        favorite.destroy
+        redirect_to request.referer
+    else
+        redirect_to request.referer
+    end
   end
-
-
 
 end
