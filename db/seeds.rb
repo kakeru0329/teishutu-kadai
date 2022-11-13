@@ -26,3 +26,12 @@ Tag.create!(
 Tag.create!(
   tag_name: "レース"
 )
+
+
+
+Admin.create!(
+   email: 'admin@admin',
+   password: 'testtest',
+   name: 'admin',
+   age: '00'
+)

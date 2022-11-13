@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>会員詳細</h1>
+  <div class="row my-5 d-flex justify-content-center">
+    <div class="col-xs-12">
+      <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch, local: true do |f| %>
+        <table>
+          <tr>
+            <th>会員ID</th>
+            <td><%= @customer.id %></td>
+          </tr>
+          <tr>
+            <th>氏名</th>
+            <td><%= @customer.name %></td>
+          </tr>
+          <tr>
+            <th>年齢</th>
+            <td><%= @customer.age %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @customer.email %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :会員ステータス, class:"form_label" %></th>
+            <td><%= f.radio_button :is_deleted, false %></td>
+            <td><%= f.label :is_deleted, "有効"%></td>
+            <td><%= f.radio_button :is_deleted, true %></td>
+            <td><%= f.label :is_deleted, "退会" %></td>
+          </tr>
+        </table>
+        <div class="form-group">
+          <%= f.submit "変更を保存", class: "btn btn-success" %>
+          <%= link_to "会員一覧",admin_customers_path, class:"btn btn-outline-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

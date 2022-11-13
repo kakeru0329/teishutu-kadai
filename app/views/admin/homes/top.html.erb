@@ -1,13 +1,6 @@
+<h1>管理者top</h1>
 <div class="container my-5">
-  <div class="row">
-    <div class="col">
-      <div class="col-5 offset-5">
-        <p>ようこそ、NEW GAME!</p>
-      </div>
-    </div>
-  </div>
   <!-- 新着レビュー表示 -->
-  <br>
   <h4 class="recommendation"><i class="fas fa-crown"></i> 新着レビュー <i class="fas fa-crown"></i></h4><br>
   <div class="row">
     <div class="col-md-8">
@@ -36,27 +29,6 @@
           </div>
         </div>
       <% end %>
-      <table>
-        <% if !current_customer.nil? %>
-        <span>いいね一覧</sapn>
-          <% @favorites.each do |favorite| %>
-            <tr>
-              <td>
-                <%= link_to post_path(favorite.post) do %>
-                  <%= favorite.post.review_title %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        <% end %>
-      </table>
-    </div>
-
-
-    <div class="col-md-4">
-      <% if @customer != nil then%>
-          <%= render 'lists/name', customer: @customer %>
-        <% end %>
     </div>
   </div>
 </div>

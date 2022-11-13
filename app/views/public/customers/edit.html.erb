@@ -1,12 +1,36 @@
 <div class="profile-container">
   <% if @customer.id == current_customer.id %>
-  <p><%= link_to "プロフィール編集", edit_customer_path(@customer) %></p>
+    <div class="container">
+  <h1>会員情報編集</h1>
+    <div class="row my-5 d-flex justify-content-center">
+          <div class="col-xs-12">
+        <%= form_with model: @customer, url: customer_path(@customer) do |f| %>
+          <table>
+            <tr>
+              <div class="form_group">
+                <th><%= f.label :ニックネーム, class:"form_label" %></th>
+                <td><%= f.text_field :name %></td>
+              </div>
+            </tr>
+            <tr>
+              <div class="form_group">
+                <th><%= f.label :年齢, class:"form_label" %></th>
+                <td><%= f.text_field :age %></td>
+              </div>
+            </tr>
+            <tr>
+              <div class="form_group">
+                <th><%= f.label :メールアドレス, class:"form_label" %></th>
+                <td><%= f.email_field :email %></td>
+              </div>
+            </tr>
+            <div class="form_group">
+            <th><%= f.submit '編集を保存', class:"btn btn-success my-3 mr-3" %></th>
+              <td><%= link_to "退会する場合", customer_unsubscribe_path, class:"btn btn-outline-secondary" %></td>
+            </div>
+          </table>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-</div>
-
-
-<div>
-  <p>ニックネーム：<%= @customer.name %></p>
-  <p>年齢：<%= @customer.age %></p>
-  <p>メールアドレス：<%= @customer.email %></p>
 </div>

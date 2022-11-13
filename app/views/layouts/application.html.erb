@@ -35,6 +35,16 @@
                 <li class="nav-post">
                   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1' %>
                 </li>
+              <% elsif admin_signed_in? %>
+                <li class="nav-post">
+                  <%= link_to "レビュー一覧", admin_posts_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+                </li>
+                <li class="nav-post">
+                  <%= link_to "会員一覧", admin_customers_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+                </li>
+                <li class="nav-post">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1' %>
+                </li>
               <% else %>
                 <li class="nav-post">
                   <%= link_to "レビュー一覧", posts_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
