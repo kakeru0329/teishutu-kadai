@@ -1,16 +1,14 @@
-<h1>投稿詳細</h1>
-<div>
-    <p><%= @post.review_title %></p>
-    <p><%= @post.background %></p>
+  <div class="container my-5">
+  <h2>投稿詳細</h2>
+    <div class="row">
+      <div class="col">
+        <div class="col-5 offset-5">
+          <div>
+              <p><%= @post.review_title %></p>
+              <p><%= @post.background %></p>
+            <%= render 'lists/comment', comment: @comment %>
+          <div>
+        </div>
+      </div>
+    </div>
   </div>
-
-<div>
-  <p>コメント件数：<%= @post.comments.count %></p>
-  <% @post.comments.each do |comment| %>
-    <%= comment.customer.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-    <% if comment.customer == current_customer %>
-      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
-    <% end %><br>
-  <% end %>
-</div>

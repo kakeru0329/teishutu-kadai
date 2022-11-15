@@ -12,16 +12,18 @@
             <% end %>
           </span>
         <% end %>
-        <table>
-          <% @posts.each do |post| %>
-            <tr>
-              <td><%=link_to post.review_title, admin_post_path(post.id) %></td>
-              <td class="text-right"><%= post.show_tag_name %></td>
-              <%# 星評価機能 %>
-              <td class="post-evaluation" data-score="<%= post.evaluation %>"></td>
-            </tr>
-          <% end %>
-        </table>
+        <% @posts.each do |post| %>
+          <div class="alert alert-secondary" role="alert">
+            <table>
+              <tr>
+                <td><%=link_to post.review_title, admin_post_path(post.id) %></td>
+                <td class="text-right"><%= post.show_tag_name %></td>
+                <%# 星評価機能 %>
+                <td class="post-evaluation" data-score="<%= post.evaluation %>"></td>
+              </tr>
+            </table>
+          </div>
+        <% end %>
         <script>
           $('.post-evaluation').raty({
             readOnly: true,

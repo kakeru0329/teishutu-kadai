@@ -1,5 +1,5 @@
-<h1>管理者top</h1>
 <div class="container my-5">
+  <h1>管理者top</h1>
   <!-- 新着レビュー表示 -->
   <h4 class="recommendation"><i class="fas fa-crown"></i> 新着レビュー <i class="fas fa-crown"></i></h4><br>
   <div class="row">
@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="card-footer">
-            <%= link_to post_path(post.id), class: "button card-footer-item" do %>
+            <%= link_to admin_post_path(post.id), class: "button card-footer-item" do %>
               レビューを見る
             <% end %>
           </div>

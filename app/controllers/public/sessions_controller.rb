@@ -2,6 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  before_action :customer_state, only: [:create]
 
   def new_guest
     customer = Customer.find_or_create_by(email: 'guest@example.com') do |customer|
