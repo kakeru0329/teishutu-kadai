@@ -6,9 +6,9 @@
         <% @tags.each do |tag| %>
           <span class="nav-post"><%#タグ検索%>
             <% if @tag.present? && @tag == tag %>
-              <%= link_to "#{tag.tag_name}", posts_path(tag_id: tag.id),class: 'btn btn-secondary mx-3 my-1' %>
+              <%= link_to "#{tag.tag_name}", posts_path(tag_id: tag.id),class: 'btn btn-secondary mx-1 my-1' %>
             <% else %>
-              <%= link_to "#{tag.tag_name}", posts_path(tag_id: tag.id),class: 'btn btn-outline-secondary mx-3 my-1' %>
+              <%= link_to "#{tag.tag_name}", posts_path(tag_id: tag.id),class: 'btn btn-outline-secondary mx-1 my-1' %>
             <% end %>
           </span>
         <% end %>

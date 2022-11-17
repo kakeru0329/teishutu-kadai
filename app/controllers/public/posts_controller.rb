@@ -17,6 +17,9 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+
+    @rakuten = RakutenWebService::Books::Game.search(title: "ゲーム")
+
   end
 
   def new

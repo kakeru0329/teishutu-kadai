@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # URL /customers/sign_in ...
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
+    passwords: 'public/passwords',
     sessions: 'public/sessions'
   }
 
@@ -36,7 +37,6 @@ Rails.application.routes.draw do
     resources :posts do
       resource :favorites, only: [:create, :destroy]
     end
-
 
   end
 

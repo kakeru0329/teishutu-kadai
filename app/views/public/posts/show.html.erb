@@ -41,3 +41,9 @@
     </div>
   </div>
 </div>
+<% @rakuten.each do |date| %>
+
+  <%= link_to (image_tag(date.medium_image_url)), date.item_url %><br>
+  <%= date.title %><br>
+
+<% end %>
