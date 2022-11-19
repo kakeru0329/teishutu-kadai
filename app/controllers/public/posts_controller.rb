@@ -17,9 +17,6 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-
-    @rakuten = RakutenWebService::Books::Game.search(title: "ゲーム")
-
   end
 
   def new
@@ -35,6 +32,12 @@ class Public::PostsController < ApplicationController
     else
       flash.now[:alert] = '投稿に失敗しました'
       render :new
+    end
+  end
+
+  def search
+    if params[:keyword]
+      @games = RakutenWebService::Books::Game.search(title: params[:keyword])
     end
   end
 

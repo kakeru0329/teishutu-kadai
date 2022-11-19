@@ -1,0 +1,24 @@
+<%# 星評価機能　%>
+<%= form_with model: post do |f| %>
+  <div class="main-rating">
+    <div class="ratings mb-3">
+      <span class="fa-regular fa-star" id="star"></span>
+      <span class="fa-regular fa-star" id="star"></span>
+      <span class="fa-regular fa-star" id="star"></span>
+      <span class="fa-regular fa-star" id="star"></span>
+      <span class="fa-regular fa-star" id="star"></span>
+    </div>
+    <div class="ml-3 rating-value-display"><span id="rating-value-display">0</span>/5</div>
+  </div>
+  <%= f.hidden_field :post_id, value:post.id %>
+  <%= f.hidden_field :evaluation, id: "rating-value" %>
+
+<% end %>
+<script>
+  $('#evaluate_stars').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: 'posts[evaluation]' //登録するモデル名とカラム名を記述
+  });
+</script>

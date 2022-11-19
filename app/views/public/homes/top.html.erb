@@ -11,6 +11,7 @@
   <h4 class="recommendation"><i class="fas fa-crown"></i> 新着レビュー <i class="fas fa-crown"></i></h4><br>
   <div class="row">
     <div class="col-md-8">
+      <%= render 'lists/search', games: @games %>
       <% @posts.each do |post| %>
         <div class="card mb-6">
           <div class="card-header">
@@ -55,8 +56,8 @@
 
     <div class="col-md-4">
       <% if @customer != nil then%>
-          <%= render 'lists/name', customer: @customer %>
-        <% end %>
+        <%= render 'lists/name', customer: @customer %>
+      <% end %>
     </div>
   </div>
 </div>

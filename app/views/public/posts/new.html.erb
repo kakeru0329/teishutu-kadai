@@ -16,33 +16,19 @@
           <th><%= f.label "レビュー" %></th>
           <td><%= f.text_area :background %></td>
         </tr>
-
         <tr>
           <th><%= f.label "タグ" %></th>
           <td><%= f.collection_select :tag_id, Tag.all, :id, :tag_name %></td>
         </tr>
         <tr>
-          <th><%= f.submit '投稿', class: "btn btn-success" %></th>
+          <td><%= render "lists/form", post: @post %></td>
         </tr>
         <tr>
-          <td></td>
+          <th><%= f.submit '投稿', class: "btn btn-success" %></th>
         </tr>
-
       </table>
       <% end %>
-      <%# 星評価機能　%>
-      <%= form_with model: @post do |f| %>
-        <div class="main-rating">
-          <div class="ratings mb-3">
-            <span class="fa fa-star-o" id="star"></span>
-            <span class="fa fa-star-o" id="star"></span>
-            <span class="fa fa-star-o" id="star"></span>
-            <span class="fa fa-star-o" id="star"></span>
-            <span class="fa fa-star-o" id="star"></span>
-          </div>
-          <div class="ml-3 rating-value-display"><span id="rating-value-display">0</span>/5</div>
-        </div>
-      <% end %>
+
     </div>
   </div>
 </div>

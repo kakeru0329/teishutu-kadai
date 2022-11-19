@@ -9,6 +9,7 @@
  *
  */
 
+
 (function($) {
   'use strict';
 
@@ -761,3 +762,6 @@
     targetType:   'hint'
   };
 })(jQuery);
+
+//= require jquery
+//= require jquery.raty.js

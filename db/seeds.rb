@@ -6,28 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Tag.create!(
-  tag_name: "RPG"
+  tag_name: "PC"
 )
 Tag.create!(
-  tag_name: "シューティング"
+  tag_name: "PS4"
 )
 Tag.create!(
-  tag_name: "ファンタジー"
+  tag_name: "PS5"
 )
 Tag.create!(
-  tag_name: "FPS"
+  tag_name: "switch"
 )
 Tag.create!(
-  tag_name: "パズル"
+  tag_name: "Xbox"
 )
-Tag.create!(
-  tag_name: "アクション"
-)
-Tag.create!(
-  tag_name: "レース"
-)
-
-
 
 Admin.create!(
    email: 'admin@admin',
