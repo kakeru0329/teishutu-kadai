@@ -6,12 +6,12 @@
       </div>
     </div>
   </div>
+  <%= render 'lists/search', games: @games %>
   <!-- 新着レビュー表示 -->
   <br>
   <h4 class="recommendation"><i class="fas fa-crown"></i> 新着レビュー <i class="fas fa-crown"></i></h4><br>
   <div class="row">
     <div class="col-md-8">
-      <%= render 'lists/search', games: @games %>
       <% @posts.each do |post| %>
         <div class="card mb-6">
           <div class="card-header">
@@ -19,18 +19,6 @@
               <%= post.review_title %>
               <p class="text-right"><%= post.show_tag_name %></p>
             </p>
-          </div>
-          <%# 星評価機能 %>
-          <div class="card-content">
-            <div class="content">
-              <div class="content average-score">
-                <div class="star-rating mb-2">
-                  <div class="star-rating-back">★★★★★</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
             <%= link_to post_path(post.id), class: "button card-footer-item" do %>
               レビューを見る
             <% end %>

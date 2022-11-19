@@ -1,0 +1,8 @@
+<table>
+  <% @games.each do |game| %>
+    <tr>
+      <td><%= link_to (image_tag(game.medium_image_url)), new_post_path %></td>
+      <td><%= game.title %></td>
+    </tr>
+  <% end %>
+</table>

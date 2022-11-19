@@ -39,6 +39,7 @@ class Public::PostsController < ApplicationController
     if params[:keyword]
       @games = RakutenWebService::Books::Game.search(title: params[:keyword])
     end
+    render template: "lists/game"
   end
 
   def destroy

@@ -6,6 +6,9 @@
           <p><%= @post.review_title %></p>
           <p><%= @post.background %></p>
         </div>
+        <div id="evaluate_stars">
+
+        </div>
         <div>
           <p>コメント件数：<%= @post.comments.count %></p>
           <% @post.comments.each do |comment| %>
@@ -41,3 +44,12 @@
     </div>
   </div>
 </div>
+<script>
+  raty(document.getElementById('evaluate_stars'),{
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: "<%=@post.evaluation %>",
+    readOnly: true//登録するモデル名とカラム名を記述
+  });
+</script>
