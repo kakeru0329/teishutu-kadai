@@ -1,29 +1,32 @@
 <div class="container my-5">
-  <h1>投稿一覧</h1>
   <div class="row">
-    <div class="col">
+
       <div class="col-5 offset-5">
         <% @tags.each do |tag| %>
           <span class="nav-post"><%#タグ検索%>
             <% if @tag.present? && @tag == tag %>
               <%= link_to "#{tag.tag_name}", posts_path(tag_id: tag.id),class: 'btn btn-secondary mx-1 my-1' %>
             <% else %>
-              <%= link_to "#{tag.tag_name}", posts_path(tag_id: tag.id),class: 'btn btn-outline-secondary mx-1 my-1' %>
+              <%= link_to "#{tag.tag_name}", posts_path(tag_id: tag.id),class: 'btn btn-outline-secondary mx- my-1' %>
             <% end %>
           </span>
         <% end %>
         <% @posts.each do |post| %>
-          <div class="alert alert-secondary" role="alert">
-            <table>
-              <tr>
-                <td><%=link_to post.review_title, admin_post_path(post.id) %></td>
-                <td class="text-right"><%= post.show_tag_name %></td>
-                <%# 星評価機能 %>
-                <td class="post-evaluation" data-score="<%= post.evaluation %>"></td>
-              </tr>
-            </table>
+          <div class="card mb-6">
+            <div class="card-header">
+              <p class="card-header-title">
+                <%= post.review_title %>
+                <p class="text-right"><%= post.show_tag_name %></p>
+              </p>
+            </div>
+            <div class="card-footer">
+              <%= link_to admin_post_path(post.id), class: "button card-footer-item" do %>
+                レビューを見る
+              <% end %>
+            </div>
           </div>
         <% end %>
+
         <script>
           $('.post-evaluation').raty({
             readOnly: true,

@@ -1,4 +1,7 @@
 class Public::PostsController < ApplicationController
+
+  before_action :avoid_guest, only:[:new, :create, :destroy]
+
   def index
     if params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
@@ -50,6 +53,13 @@ class Public::PostsController < ApplicationController
 
   def posts_params
     params.require(:post).permit(:background, :evaluation, :review_title, :customer_id, :tag_id)
+  end
+
+  def avoid_guest
+    @post = Post.new
+    if current_customer == Customer.find_by(email: 'guest@example.com')
+      redirect_to posts_path
+    end
   end
 
 end

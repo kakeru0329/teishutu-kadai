@@ -7,7 +7,7 @@
       <td><%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %></td>
       <td><%= comment.comment %></td>
       <td>
-      <%= link_to "削除", admin_comment_path(comment), method: :delete, class: "btn btn-sm btn-danger p-0 p-1", style: "font-size: 8px;" %>
+        <%= link_to "削除", admin_comment_path(comment), method: :delete, class: "btn btn-sm btn-danger p-0 p-1", style: "font-size: 8px;" %>
       </td>
     </tr>
     <% end %>

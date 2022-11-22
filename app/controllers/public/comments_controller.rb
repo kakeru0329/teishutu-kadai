@@ -1,6 +1,6 @@
 class Public::CommentsController < ApplicationController
 
-
+  before_action :avoid_guest, only:[:create, :destroy]
 
   def create
     post = Post.find(params[:post_id])
@@ -19,6 +19,13 @@ class Public::CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:comment)
+  end
+
+  def avoid_guest
+    
+    if current_customer == Customer.find_by(email: 'guest@example.com')
+      redirect_to post_path
+    end
   end
 
 end

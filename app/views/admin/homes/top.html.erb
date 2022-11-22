@@ -12,16 +12,6 @@
               <p class="text-right"><%= post.show_tag_name %></p>
             </p>
           </div>
-          <%# 星評価機能 %>
-          <div class="card-content">
-            <div class="content">
-              <div class="content average-score">
-                <div class="star-rating mb-2">
-                  <div class="star-rating-back">★★★★★</div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="card-footer">
             <%= link_to admin_post_path(post.id), class: "button card-footer-item" do %>
               レビューを見る

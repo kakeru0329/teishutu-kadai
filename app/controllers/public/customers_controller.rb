@@ -1,7 +1,9 @@
 class Public::CustomersController < ApplicationController
+  
+  before_action :avoid_guest, only:[:edit, :update, :withdraw]
 
   def edit
-    @customer = Customer.find(params[:id])
+   
   end
 
   def update
@@ -10,7 +12,7 @@ class Public::CustomersController < ApplicationController
        flash[:notice] = "詳細の変更が完了しました。"
        redirect_to root_path
     else
-       flash[:notice] = "詳細の変更内容に不備があります。"
+       flash.now[:alert] = "詳細の変更内容に不備があります。"
        render :edit
     end
   end
@@ -32,6 +34,13 @@ class Public::CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:name, :age, :email, :is_deleted)
   end
-
+  
+  def avoid_guest
+    @customer = Customer.find(params[:id])
+    if @customer.email == "guest@example.com"
+      redirect_to root_path
+    end
+  end
 
 end
+

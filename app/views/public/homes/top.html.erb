@@ -6,7 +6,7 @@
       </div>
     </div>
   </div>
-  <%= render 'lists/search', games: @games %>
+
   <!-- 新着レビュー表示 -->
   <br>
   <h4 class="recommendation"><i class="fas fa-crown"></i> 新着レビュー <i class="fas fa-crown"></i></h4><br>
@@ -25,27 +25,31 @@
           </div>
         </div>
       <% end %>
-      <table>
+      <ul class="list-group">
         <% if !current_customer.nil? %>
-        <span>いいね一覧</sapn>
-          <% @favorites.each do |favorite| %>
-            <tr>
+          <li class="list-group-item active">
+            <tr>いいね一覧</tr>
+          </li>
+          <li class="list-group-item">
+            <% @favorites.each do |favorite| %>
               <td>
                 <%= link_to post_path(favorite.post) do %>
                   <%= favorite.post.review_title %>
-                <% end %>
+                <% end %><br>
               </td>
-            </tr>
-          <% end %>
+            <% end %>
+          </li>
         <% end %>
       </table>
     </div>
-
-
     <div class="col-md-4">
-      <% if @customer != nil then%>
-        <%= render 'lists/name', customer: @customer %>
-      <% end %>
+      <%= render 'lists/search', games: @games %>
+      <div>
+        <%= notice %>
+        <% if @customer != nil then%>
+          <%= render 'lists/name', customer: @customer %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

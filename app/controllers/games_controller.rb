@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
   def search
     if params[:keyword]
-    @items = RakutenWebService::Ichiba::Item.search(keyword: params[:keyword])
+    @items = RakutenWebService::Books::Game.search(keyword: params[:keyword])
     end
   end
 

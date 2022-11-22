@@ -7,13 +7,13 @@
           <p><%= @post.background %></p>
         </div>
         <div id="evaluate_stars">
-
         </div>
         <div>
           <p>コメント件数：<%= @post.comments.count %></p>
           <% @post.comments.each do |comment| %>
             <%= comment.customer.name %>
-            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+            <%= comment.comment %>
             <% if comment.customer == current_customer %>
               <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "btn btn-sm btn-danger p-0 p-1", style: "font-size: 8px;"  %>
             <% end %><br>

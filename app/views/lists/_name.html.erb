@@ -1,4 +1,4 @@
-<table class="table table-bordered">
+<table class="table table-bordered ">
   <tr>
     <td>ニックネーム：<%= customer.name %></td>
   </tr>
@@ -9,6 +9,12 @@
     <td>メールアドレス：<%= customer.email %></td>
   </tr>
   <tr>
-    <th><%= link_to "編集する",edit_customer_path(customer.id), class:"btn btn-success ml-5"%></th>
+    <% if current_customer %>
+      <%if @customer.email == "guest@example.com" %>
+        <td><%= link_to "",edit_customer_path(customer.id), class: 'nav-link disabled' %></td>
+      <% else %>
+       <td><%= link_to "編集する",edit_customer_path(customer.id), class:"btn btn-success ml-5"%></t>
+      <% end %>
+    <% end %>
   </tr>
 </table>

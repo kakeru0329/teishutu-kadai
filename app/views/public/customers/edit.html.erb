@@ -2,6 +2,7 @@
   <% if @customer.id == current_customer.id %>
     <div class="container">
   <h1>会員情報編集</h1>
+  <%= alert %>
     <div class="row my-5 d-flex justify-content-center">
           <div class="col-xs-12">
         <%= form_with model: @customer, url: customer_path(@customer) do |f| %>
