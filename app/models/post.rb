@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   belongs_to :tag
 
   validates :review_title, presence: true
- # validates :evaluation, presence: true
+  validates :evaluation, presence: true
   validates :background, presence: true
 
   def favorited_by?(customer)
@@ -18,5 +18,12 @@ class Post < ApplicationRecord
    tag.tag_name
   end
 
+  def self.search(search)
+   if search
+    Post.where(['review_title LIKE ?', "%#{search}%"])
+   else
+    Post.all
+   end
+  end
 
 end

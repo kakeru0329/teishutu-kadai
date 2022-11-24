@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.all
     else
-      @posts = Post.all
+      @posts = Post.page(params[:page]).per(5).order(created_at: :desc)
     end
 
     if current_customer then
@@ -20,6 +20,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    @customer = Customer.find(current_customer.id)
   end
 
   def new
@@ -39,9 +40,8 @@ class Public::PostsController < ApplicationController
   end
 
   def search
-    if params[:keyword]
-      @games = RakutenWebService::Books::Game.search(title: params[:keyword])
-    end
+    @posts = Post.search(params[:search])
+    @games = Post.search(params[:search])
     render template: "lists/game"
   end
 

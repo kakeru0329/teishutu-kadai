@@ -11,7 +11,7 @@
         <div>
           <p>コメント件数：<%= @post.comments.count %></p>
           <% @post.comments.each do |comment| %>
-            <%= comment.customer.name %>
+            <%= comment.customer.name %>さん
             <%= comment.created_at.strftime('%Y/%m/%d') %>
             <%= comment.comment %>
             <% if comment.customer == current_customer %>
@@ -20,24 +20,28 @@
           <% end %>
         </div>
         <% if !current_customer.nil? %>
-        <div>
-          <%= form_with model: [@post, @comment] do |f| %>
-            <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-            <%= f.submit "コメントする" %>
-          <% end %>
-        </div>
-          <% if @post.favorited_by?(current_customer) %>
-            <p>
-              <%= link_to post_favorites_path(@post), method: :delete do %>
-                ♥<%= @post.favorites.count %> いいね
+          <% if @customer.email != "guest@example.com" %>
+            <div>
+              <%= form_with model: [@post, @comment] do |f| %>
+                <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+                <%= f.submit "コメントする" %>
               <% end %>
-            </p>
-          <% else %>
-            <p>
-              <%= link_to post_favorites_path(@post), method: :post do %>
-                ♡<%= @post.favorites.count %> いいね
+            </div>
+            <div>
+              <% if @post.favorited_by?(current_customer) %>
+                <p>
+                  <%= link_to post_favorites_path(@post), method: :delete do %>
+                    ♥<%= @post.favorites.count %> いいね
+                  <% end %>
+                </p>
+              <% else %>
+                <p>
+                  <%= link_to post_favorites_path(@post), method: :post do %>
+                    ♡<%= @post.favorites.count %> いいね
+                  <% end %>
+                </p>
               <% end %>
-            </p>
+            </div>
           <% end %>
         <% end %>
       </div>

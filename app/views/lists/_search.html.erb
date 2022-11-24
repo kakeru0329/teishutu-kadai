@@ -1,9 +1,11 @@
-<%= form_with url: posts_search_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword, class: "form-control" %>
-    <%= f.submit 'ゲームタイトルを検索', class: "form-control btn btn-success" %>
+<%= form_tag(posts_search_path, :method => "get")do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag "Search" ,:review_title => nil ,class: "button is-info"%>
+
   <% if games.present? %>
     <%= render 'lists/game', games: @games %>
   <% end %>
 
 <% end %>
 <%#ページ設定%>
+

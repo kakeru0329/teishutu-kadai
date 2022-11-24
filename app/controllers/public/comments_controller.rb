@@ -22,7 +22,7 @@ class Public::CommentsController < ApplicationController
   end
 
   def avoid_guest
-    
+
     if current_customer == Customer.find_by(email: 'guest@example.com')
       redirect_to post_path
     end

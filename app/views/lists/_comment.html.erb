@@ -3,7 +3,7 @@
     <p>コメント件数：<%= @post.comments.count %></p>
     <% @post.comments.each do |comment| %>
     <tr>
-      <td><%= comment.customer.name %></td>
+      <td><%= comment.customer.name %>さん</td>
       <td><%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %></td>
       <td><%= comment.comment %></td>
       <td>
