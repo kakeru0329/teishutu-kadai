@@ -1,6 +1,6 @@
 <%= form_tag(posts_search_path, :method => "get")do %>
   <%= text_field_tag :search %>
-  <%= submit_tag "Search" ,:review_title => nil ,class: "button is-info"%>
+  <%= submit_tag "検索" ,:review_title => nil ,class: "button is-info"%>
 
   <% if games.present? %>
     <%= render 'lists/game', games: @games %>

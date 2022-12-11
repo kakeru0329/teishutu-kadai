@@ -1,15 +1,8 @@
-<table>
-  <tbody>
-    <p>コメント件数：<%= @post.comments.count %></p>
-    <% @post.comments.each do |comment| %>
-    <tr>
-      <td><%= comment.customer.name %>さん</td>
-      <td><%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %></td>
-      <td><%= comment.comment %></td>
-      <td>
-        <%= link_to "削除", admin_comment_path(comment), method: :delete, class: "btn btn-sm btn-danger p-0 p-1", style: "font-size: 8px;" %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<p>コメント件数：<%= @post.comments.count %></p>
+<% @post.comments.each do |comment| %>
+  <div class="alert alert-info" role="alert">
+    投稿日：<%= comment.created_at.strftime('%Y/%m/%d') %>
+    投稿者：<%= comment.customer.name %><br>
+    コメント：<%= comment.comment %>
+      <%= link_to "削除", admin_comment_path(comment), method: :delete, class: "btn btn-sm btn-danger p-0 p-1", style: "font-size: 8px;" %>
+<% end %>

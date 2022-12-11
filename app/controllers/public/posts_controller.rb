@@ -14,7 +14,6 @@ class Public::PostsController < ApplicationController
       @customer = Customer.find(current_customer.id)
     end
     @tags = Tag.all
-
   end
 
   def show
@@ -30,11 +29,11 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(posts_params)
     @post.customer_id = current_customer.id
-    flash[:notice] = "投稿できました"
+    #flash[:notice] = "投稿できました"
     if @post.save
       redirect_to posts_path
     else
-      flash.now[:alert] = '投稿に失敗しました'
+      #flash.now[:alert] = '投稿に失敗しました'
       render :new
     end
   end

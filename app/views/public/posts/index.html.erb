@@ -3,7 +3,7 @@
       <div class="col">
         <div class="col-5 offset-5">
           <% @tags.each do |tag| %>
-            <span class="nav-post"><%#タグ検索%>
+            <span class="nav-post"><%#タグ絞り込み%>
               <% if @tag.present? && @tag == tag %>
                 <%= link_to "#{tag.tag_name}", posts_path(tag_id: tag.id),class: 'btn btn-secondary mx-1 my-1' %>
               <% else %>
@@ -13,26 +13,10 @@
           <% end %>
           <% @posts.each do |post| %>
           <div class="alert alert-secondary" role="alert">
-            <table>
-              <tr>
-                <td><%=link_to post.review_title, post_path(post.id) %></td>
-                <td class="text-right"><%= post.show_tag_name %></td>
-                <%# 星評価機能 %>
-                <td class="post-evaluation" data-score="<%= post.evaluation %>"></td>
-              </tr>
-            </table>
+            <div><%=link_to post.review_title, post_path(post.id) %></div>
+            <div class="text-right"><%= post.show_tag_name %></div>
           </div>
         <% end %>
-        <p><%= paginate @posts %></p>
-          <script>
-            $('.post-evaluation').raty({
-              readOnly: true,
-              score: function() {
-                return $(this).attr('data-score');
-              },
-              path: '/assets/'
-            });
-          </script>
         </div>
       </div>
       <div class="col-md-4">

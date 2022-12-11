@@ -9,5 +9,9 @@ class Public::HomesController < ApplicationController
         @games = Post.search(params[:search])
       end
     end
+
+    #ログインいていないユーザーが投稿、詳細を見れないようにする
+    #flash[:notice] = "レビューの投稿,詳細閲覧を行うにはログインする必要があります"
+    #render :top
   end
 end
