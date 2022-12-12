@@ -3,6 +3,7 @@ class Public::PostsController < ApplicationController
   before_action :avoid_guest, only:[:new, :create, :destroy]
 
   def index
+    @tags = Tag.all
     if params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.all
@@ -13,13 +14,18 @@ class Public::PostsController < ApplicationController
     if current_customer then
       @customer = Customer.find(current_customer.id)
     end
-    @tags = Tag.all
+
   end
 
   def show
-    @post = Post.find(params[:id])
-    @comment = Comment.new
-    @customer = Customer.find(current_customer.id)
+    if current_customer
+      @post = Post.find(params[:id])
+      @comment = Comment.new
+      @customer = Customer.find(current_customer.id)
+    else
+      flash[:alert] = "詳細はログインしてください。"
+      redirect_to posts_path
+    end
   end
 
   def new
@@ -29,11 +35,9 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(posts_params)
     @post.customer_id = current_customer.id
-    #flash[:notice] = "投稿できました"
     if @post.save
       redirect_to posts_path
     else
-      #flash.now[:alert] = '投稿に失敗しました'
       render :new
     end
   end
