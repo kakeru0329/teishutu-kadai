@@ -3,6 +3,7 @@
       <div class="col">
         <div class="col-5 offset-5">
           <%= flash[:alert] %>
+          <%= flash[:notice] %>
           <% @tags.each do |tag| %>
             <span class="nav-post"><%#タグ絞り込み%>
               <% if @tag.present? && @tag == tag %>
@@ -15,8 +16,13 @@
 
           <% @posts.each do |post| %>
           <div class="alert alert-secondary" role="alert">
-            <div><%=link_to post.review_title, post_path(post.id) %></div>
+            <div><%=link_to post.review_title, post_path(post.id) %></div><br>
+            <div><%= post.created_at.strftime('%Y/%m/%d') %></div>
+            <div><%= post.customer.name %></div>
             <div class="text-right"><%= post.show_tag_name %></div>
+            <% if current_customer.id == post.customer_id %>
+              <div class="text-right"><%= link_to "編集する", edit_post_path(post.id) %></div>
+            <% end %>
           </div>
         <% end %>
         </div>

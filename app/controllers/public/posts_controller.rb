@@ -32,11 +32,30 @@ class Public::PostsController < ApplicationController
     @post = Post.new
   end
 
+  def edit
+    @post = Post.find(params[:id])
+    unless @post.customer_id == current_customer.id
+    redirect_to post_path
+    end
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(posts_params)
+      flash[:notice] = "投稿が編集されました。"
+      redirect_to post_path
+    else
+      @customer = current_customer
+      render :edit
+    end
+  end
+
   def create
     @post = Post.new(posts_params)
     @post.customer_id = current_customer.id
     if @post.save
       redirect_to posts_path
+      flash[:notice] = "投稿が完了しました。"
     else
       render :new
     end
