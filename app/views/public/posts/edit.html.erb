@@ -11,8 +11,6 @@
         <% end %>
         </ul>
       <% end %>
-
-
       <%= form_with model: @post do |f| %>
         <div class="form_group">
           <label for="post_title">タイトル</label>
@@ -28,9 +26,7 @@
       <% end %>
       <div>
         <% if @post.customer == current_customer %>
-          <%= link_to "詳細へ", post_path(@post) %>
-          |
-          <%= link_to "一覧へ", posts_path %>
+          <%= link_to "削除", post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
         <% end %>
       </div>
     </div>
