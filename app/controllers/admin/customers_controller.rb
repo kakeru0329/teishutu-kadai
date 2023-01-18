@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::CustomersController < ApplicationController
   def index
     @customers = Customer.all
@@ -17,9 +19,7 @@ class Admin::CustomersController < ApplicationController
   end
 
   private
-
-  def customer_params
-    params.require(:customer).permit(:name, :age, :email, :is_deleted)
-  end
-
+    def customer_params
+      params.require(:customer).permit(:name, :age, :email, :is_deleted)
+    end
 end

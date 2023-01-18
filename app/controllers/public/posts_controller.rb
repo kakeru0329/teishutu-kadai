@@ -1,6 +1,7 @@
-class Public::PostsController < ApplicationController
+# frozen_string_literal: true
 
-  before_action :avoid_guest, only:[:new, :create, :destroy]
+class Public::PostsController < ApplicationController
+  before_action :avoid_guest, only: [:new, :create, :destroy]
 
   def index
     @tags = Tag.all
@@ -14,7 +15,6 @@ class Public::PostsController < ApplicationController
     if current_customer then
       @customer = Customer.find(current_customer.id)
     end
-
   end
 
   def show
@@ -35,7 +35,7 @@ class Public::PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     unless @post.customer_id == current_customer.id
-    redirect_to post_path
+      redirect_to post_path
     end
   end
 
@@ -75,16 +75,14 @@ class Public::PostsController < ApplicationController
 
 
   private
-
-  def posts_params
-    params.require(:post).permit(:background, :evaluation, :review_title, :customer_id, :tag_id)
-  end
-
-  def avoid_guest
-    @post = Post.new
-    if current_customer == Customer.find_by(email: 'guest@example.com')
-      redirect_to posts_path
+    def posts_params
+      params.require(:post).permit(:background, :evaluation, :review_title, :customer_id, :tag_id)
     end
-  end
 
+    def avoid_guest
+      @post = Post.new
+      if current_customer == Customer.find_by(email: "guest@example.com")
+        redirect_to posts_path
+      end
+    end
 end

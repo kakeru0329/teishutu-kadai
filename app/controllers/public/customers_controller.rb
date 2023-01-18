@@ -1,24 +1,23 @@
+# frozen_string_literal: true
+
 class Public::CustomersController < ApplicationController
-  
-  before_action :avoid_guest, only:[:edit, :update, :withdraw]
+  before_action :avoid_guest, only: [:edit, :update, :withdraw]
 
   def edit
-   
   end
 
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-       flash[:notice] = "詳細の変更が完了しました。"
-       redirect_to root_path
+      flash[:notice] = "詳細の変更が完了しました。"
+      redirect_to root_path
     else
-       flash.now[:alert] = "詳細の変更内容に不備があります。"
-       render :edit
+      flash.now[:alert] = "詳細の変更内容に不備があります。"
+      render :edit
     end
   end
 
   def unsubscribe
-
   end
 
   def withdraw
@@ -30,17 +29,14 @@ class Public::CustomersController < ApplicationController
   end
 
   private
-
-  def customer_params
-    params.require(:customer).permit(:name, :age, :email, :is_deleted)
-  end
-  
-  def avoid_guest
-    @customer = Customer.find(params[:id])
-    if @customer.email == "guest@example.com"
-      redirect_to root_path
+    def customer_params
+      params.require(:customer).permit(:name, :age, :email, :is_deleted)
     end
-  end
 
+    def avoid_guest
+      @customer = Customer.find(params[:id])
+      if @customer.email == "guest@example.com"
+        redirect_to root_path
+      end
+    end
 end
-

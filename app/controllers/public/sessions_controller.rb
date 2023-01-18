@@ -5,14 +5,14 @@ class Public::SessionsController < Devise::SessionsController
   before_action :customer_state, only: [:create]
 
   def new_guest
-    customer = Customer.find_or_create_by(email: 'guest@example.com') do |customer|
-    customer.password = SecureRandom.urlsafe_base64
-    customer.name = "ゲストユーザー"
-    customer.age = "0"
+    customer = Customer.find_or_create_by(email: "guest@example.com") do |customer|
+      customer.password = SecureRandom.urlsafe_base64
+      customer.name = "ゲストユーザー"
+      customer.age = "0"
     end
 
     sign_in customer
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
   end
 
   # 退会しているかを判断するメソッド

@@ -7,8 +7,8 @@ class Public::RegistrationsController < Devise::RegistrationsController
   before_action :ensure_normal_customer, only: :destroy
 
   def ensure_normal_customer
-    if resource.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
+    if resource.email == "guest@example.com"
+      redirect_to root_path, alert: "ゲストユーザーは削除できません。"
     end
   end
 

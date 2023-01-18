@@ -1,5 +1,6 @@
-class Admin::CommentsController < ApplicationController
+# frozen_string_literal: true
 
+class Admin::CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @post = @comment.post
@@ -8,9 +9,7 @@ class Admin::CommentsController < ApplicationController
   end
 
    private
-
-  def comment_params
-    params.require(:comment).permit(:comment)
-  end
-
+     def comment_params
+       params.require(:comment).permit(:comment)
+     end
 end

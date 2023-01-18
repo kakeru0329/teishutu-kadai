@@ -1,5 +1,6 @@
-class Admin::PostsController < ApplicationController
+# frozen_string_literal: true
 
+class Admin::PostsController < ApplicationController
   def index
     if params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
@@ -8,7 +9,6 @@ class Admin::PostsController < ApplicationController
       @posts = Post.all
     end
     @tags = Tag.all
-
   end
 
   def show
@@ -20,9 +20,7 @@ class Admin::PostsController < ApplicationController
   end
 
   private
-
-  def posts_params
-    params.require(:post).permit(:background, :evaluation, :review_title, :customer_id, :tag_id)
-  end
-
+    def posts_params
+      params.require(:post).permit(:background, :evaluation, :review_title, :customer_id, :tag_id)
+    end
 end
