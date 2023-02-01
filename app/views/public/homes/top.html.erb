@@ -19,7 +19,7 @@
               <%= post.created_at.strftime('%Y/%m/%d') %>
               <p class="text-right"><%= post.show_tag_name %></p>
             </p>
-            <%= link_to post_path(post.id), class: "button card-footer-item" do %>
+            <%= link_to new_customer_registration_path, class: "button card-footer-item" do %>
               レビューを見る
             <% end %>
           </div>
